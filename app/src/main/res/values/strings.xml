@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Challenge</string>
+    <string name="main_ipc_title">IPC History</string>
+    <string name="main_top_ten_title">Top Ten</string>
 </resources>
