@@ -4,10 +4,12 @@ import android.util.Log
 import com.acosta.challenge.models.IPCHistoryResponse
 import com.acosta.challenge.models.TopTenResponse
 import com.acosta.challenge.net.ServerApi
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import org.koin.core.annotation.Single
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import java.util.concurrent.Flow
 
 /**
  * Server Repository
@@ -37,6 +39,7 @@ interface ServerRepository {
 class ServerRepositoryImpl : ServerRepository, KoinComponent {
 
     private val TAG = this::class.java.simpleName
+    private val REFRESH_INTERVAL = 5000L
 
     override val service: ServerApi by inject()
 
@@ -55,6 +58,18 @@ class ServerRepositoryImpl : ServerRepository, KoinComponent {
         } catch (e: Exception) {
             Log.e(TAG, "getIPC: An error occurred when fetching top indices", e)
             null
+        }
+    }
+
+    /**
+     * Constant refreshing hot flow of indices content.
+     */
+    val indicesFlow: Flow<TopTenResponse> = flow {
+        while (true) {
+            getIndices()?.let {
+                emit(it)
+                delay(REFRESH_INTERVAL)
+            }
         }
     }
 }

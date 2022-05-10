@@ -1,9 +1,11 @@
 package com.acosta.challenge.models
 
+import android.icu.text.DecimalFormat
+
 typealias TopTenResponse = ArrayList<IndexItem>
 
-data class IndexItem (
-    val issueID: String,
+data class IndexItem(
+    val issueId: String,
     val openPrice: Double,
     val maxPrice: Double,
     val minPrice: Double,
@@ -17,8 +19,10 @@ data class IndexItem (
     val ipcParticipationRate: Double,
     val lastPrice: Double,
     val closePrice: Double,
-    val riseLowTypeID: Long,
-    val instrumentTypeID: Long,
-    val benchmarkID: Long,
+    val riseLowTypeId: Long,
+    val instrumentTypeId: Long,
+    val benchmarkId: Long,
     val benchmarkPercentage: Long
 )
+
+

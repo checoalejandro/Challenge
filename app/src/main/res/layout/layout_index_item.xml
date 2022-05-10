@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txt_issue_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-black"
+        android:lines="1"
+        android:textColor="@color/color_text_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="SAMPLE TEST" />
+
+    <TextView
+        android:id="@+id/txt_issue_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="sans-serif-black"
+        android:lines="1"
+        android:textColor="@color/color_text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="$90.93" />
+
+    <TextView
+        android:id="@+id/txt_issue_percentage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-light"
+        android:lines="1"
+        android:textColor="@color/color_text_green"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/txt_issue_price"
+        app:layout_constraintTop_toBottomOf="@+id/txt_issue_price"
+        tools:text="15.93%" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
