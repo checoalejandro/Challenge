@@ -6,7 +6,9 @@ buildscript {
         koin_ksp_version = '1.0.0-beta-2'
         robolectric_version = '4.8'
         okhttp_version = '4.9.3'
+        nav_version = '2.4.2'
 
+        // This is helpful when you can change this value from a CI and start testing other server.
         server_host = "https://run.mocky.io"
     }
     dependencies {
@@ -17,7 +19,7 @@ buildscript {
 plugins {
     id 'com.android.application' version '7.2.0-beta04' apply false
     id 'com.android.library' version '7.2.0-beta04' apply false
-    id 'org.jetbrains.kotlin.android' version '1.5.31' apply false
+    id 'org.jetbrains.kotlin.android' version '1.6.20' apply false
     id 'com.google.devtools.ksp' version '1.6.20-1.0.5' apply false
 }
 

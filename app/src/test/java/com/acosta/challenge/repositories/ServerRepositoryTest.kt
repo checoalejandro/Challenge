@@ -26,6 +26,10 @@ class ServerRepositoryTest : ChallengeTest() {
                             setResponseCode(200)
                             setBody(getLocalResponse("/responses/successful_ipc.json"))
                         }
+                        "/v3/b4eb963c-4aee-4b60-a378-20cb5b00678f" -> {
+                            setResponseCode(200)
+                            setBody(getLocalResponse("/responses/successful_indices.json"))
+                        }
                         else -> setResponseCode(404)
                     }
                 }
@@ -47,6 +51,18 @@ class ServerRepositoryTest : ChallengeTest() {
 
             val parsed = response.first().getFormattedDate()
             assertEquals("Aug 18, 2020, 12:01:43 AM", parsed)
+        }
+    }
+
+    /**
+     * Expect always 2 elements without nulls.
+     */
+    @Test
+    fun `successful request indices`() {
+        runBlocking {
+            val response = repository.getIndices()
+            assertNotNull(response)
+            assertEquals(2, response.count())
         }
     }
 
