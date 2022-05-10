@@ -32,6 +32,12 @@ abstract class ChallengeTest : KoinComponent {
      */
     abstract fun setMockedServer(): Dispatcher
 
+    /**
+     * Initializes test environment.
+     * This will be called every single time we run a test.
+     * Depending on the dispatcher each class defined,
+     * will be shared along the test.
+     */
     @Before
     fun setup() {
         // Setup logger

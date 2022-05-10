@@ -34,14 +34,20 @@ class ServerRepositoryTest : ChallengeTest() {
         }
     }
 
+    /**
+     * Expect always 3 elements without nulls.
+     */
     @Test
-    fun `successful request`() {
+    fun `successful request ipc`() {
         runBlocking {
             val response = repository.getIPC()
             assertNotNull(response)
             assertEquals(3, response.count())
-        }
+            assert(response.all { it.date.isNotEmpty() })
 
+            val parsed = response.first().getFormattedDate()
+            assertEquals("Aug 18, 2020, 12:01:43 AM", parsed)
+        }
     }
 
 }
