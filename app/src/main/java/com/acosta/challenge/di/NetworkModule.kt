@@ -1,5 +1,6 @@
 package com.acosta.challenge.di
 
+import com.acosta.challenge.BuildConfig
 import com.acosta.challenge.net.ServerApi
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
@@ -9,6 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class NetworkModule(
+    val baseUrl: String = BuildConfig.SERVER_URL,
     val client: OkHttpClient = defaultClient()
 ) {
 
@@ -23,6 +25,7 @@ class NetworkModule(
         single {
             Retrofit.Builder()
                 .client(get())
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(get()))
                 .build()
         }
