@@ -1,10 +1,7 @@
 package com.acosta.challenge.ui.viewmodels
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.acosta.challenge.models.IPCHistoryResponse
 import com.acosta.challenge.models.TopTenResponse
 import com.acosta.challenge.repositories.ServerRepository
@@ -26,28 +23,8 @@ class HomeViewModel(
     private val repository: ServerRepositoryImpl
 ) : ViewModel() {
 
-    init {
-        viewModelScope.launch {
-            repository.indicesFlow
-                .catch { exception ->
-                    Log.e(
-                        "HomeViewModel",
-                        "Exception occur: ${exception.message}",
-                        exception
-                    )
-                }
-                .stateIn(viewModelScope)
-                .collect {
-                    _topTenLiveData.postValue(it)
-                }
-        }
-    }
-
     // Avoid exposing MutableLiveData is a better practice.
     private val _ipcHistoryLiveData = MutableLiveData<IPCHistoryResponse>()
-
-    private val _topTenLiveData = MutableLiveData<TopTenResponse>()
-    val topTenLiveData: LiveData<TopTenResponse> by this::_topTenLiveData
 
     /**
      * Notifies whenever IPC history is retrieved from server.
@@ -78,6 +55,11 @@ class HomeViewModel(
             }
         }
     }
+
+    /**
+     * Hot flow to fetch indices.
+     */
+    fun getTopTen() = repository.indicesFlow
 
     /**
      * Notifies UI to show an error message.

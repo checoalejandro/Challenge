@@ -5,8 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.acosta.challenge.adapters.IndicesAdapter
 import com.acosta.challenge.databinding.FragmentTopTenBinding
 import com.acosta.challenge.ui.viewmodels.HomeViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
@@ -18,6 +24,7 @@ class TopTenFragment : Fragment() {
 
     private val viewModel: HomeViewModel by sharedViewModel()
     private lateinit var binding: FragmentTopTenBinding
+    private lateinit var adapter: IndicesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,19 +36,25 @@ class TopTenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTopTenBinding.inflate(inflater)
-
+        setUI()
         setObservers()
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.topTenLiveData.observe(this) {
-            if (it == null) return@observe
-        }
+    private fun setUI() {
+        adapter = IndicesAdapter()
+        binding.rv.adapter = adapter
     }
 
     private fun setObservers() {
-
+        lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getTopTen()
+                    .flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                    .collect {
+                        adapter.setItems(it)
+                    }
+            }
+        }
     }
 }
