@@ -32,11 +32,16 @@ class IPCHistoryFragment : Fragment() {
     ): View {
         binding = FragmentIPCHistoryBinding.inflate(inflater, container, false)
         setObservers()
-        viewModel.getIPCHistory()
         return binding.root
     }
 
     private fun setObservers() {
+        viewModel.authenticated.observe(viewLifecycleOwner) { authenticated ->
+            // Might look silly but authenticated could come as null
+            if (authenticated == true) {
+                viewModel.getIPCHistory()
+            }
+        }
         viewModel.ipcLiveData.observe(viewLifecycleOwner) { response ->
             if (response == null) {
                 Log.d(

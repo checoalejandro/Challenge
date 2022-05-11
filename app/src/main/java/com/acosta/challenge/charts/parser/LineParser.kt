@@ -15,12 +15,26 @@ import com.github.mikephil.charting.interfaces.dataprovider.ChartInterface
  */
 interface ChallengeParser {
 
+    /**
+     * Main chart object
+     */
     val chart: ChartInterface
 
+    /**
+     * Properties that applies to all charts
+     */
     fun setGlobalProperties()
 
+    /**
+     * Properties that applies to specific chart type
+     */
     fun setSecondaryProperties()
 
+    /**
+     * Builds into data and sets to the chart
+     *
+     * @param values map key is label, list are y values.
+     */
     fun build(values: Map<String, List<Double>>)
 
 }
@@ -42,7 +56,8 @@ class LineParser(
     }
 
     override fun setSecondaryProperties() {
-
+        chart.description.isEnabled = false
+        chart.xAxis.isEnabled = false
     }
 
     override fun build(values: Map<String, List<Double>>) {
@@ -56,8 +71,6 @@ class LineParser(
                 setDrawCircles(false)
             }
         }.toList()
-        chart.description.isEnabled = false
-        chart.xAxis.isEnabled = false
         chart.data = LineData(dataSets)
         chart.invalidate()
     }
