@@ -1,11 +1,16 @@
 package com.acosta.challenge.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.acosta.challenge.R
+import androidx.fragment.app.Fragment
+import com.acosta.challenge.charts.ChartFactory
+import com.acosta.challenge.charts.parser.LineParser
+import com.acosta.challenge.databinding.FragmentIPCHistoryBinding
+import com.acosta.challenge.ui.viewmodels.HomeViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -14,6 +19,9 @@ import com.acosta.challenge.R
  */
 class IPCHistoryFragment : Fragment() {
 
+    private val viewModel: HomeViewModel by sharedViewModel()
+    private lateinit var binding: FragmentIPCHistoryBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -21,9 +29,26 @@ class IPCHistoryFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_i_p_c_history, container, false)
+    ): View {
+        binding = FragmentIPCHistoryBinding.inflate(inflater, container, false)
+        setObservers()
+        viewModel.getIPCHistory()
+        return binding.root
+    }
+
+    private fun setObservers() {
+        viewModel.ipcLiveData.observe(viewLifecycleOwner) { response ->
+            if (response == null) {
+                Log.d(
+                    "IPCHistoryFragment",
+                    "setObservers: No response from server received to IPC history"
+                )
+                return@observe
+            }
+
+            // Show data, if we need another type, ChartFactory.BAR can be used.
+            ChartFactory.LINE.parse(response, LineParser(binding.lineChart))
+        }
     }
 
     companion object {
