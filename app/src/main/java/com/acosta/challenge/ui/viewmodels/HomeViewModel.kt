@@ -23,6 +23,11 @@ class HomeViewModel(
     private val repository: ServerRepositoryImpl
 ) : ViewModel() {
 
+    /**
+     * Notifies whenever user is authenticated.
+     */
+    val authenticated = MutableLiveData<Boolean>()
+
     // Avoid exposing MutableLiveData is a better practice.
     private val _ipcHistoryLiveData = MutableLiveData<IPCHistoryResponse>()
 
