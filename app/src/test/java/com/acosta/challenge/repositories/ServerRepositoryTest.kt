@@ -1,6 +1,8 @@
 package com.acosta.challenge.repositories
 
 import com.acosta.challenge.ChallengeTest
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
@@ -12,7 +14,7 @@ import kotlin.test.assertNotNull
 
 class ServerRepositoryTest : ChallengeTest() {
 
-    private val repository: ServerRepository by lazy { get<ServerRepository>() }
+    private val repository: ServerRepositoryImpl by lazy { get<ServerRepositoryImpl>() }
 
     /**
      * Mocks responses
@@ -63,6 +65,15 @@ class ServerRepositoryTest : ChallengeTest() {
             val response = repository.getIndices()
             assertNotNull(response)
             assertEquals(2, response.count())
+        }
+    }
+
+    @Test
+    fun `hot flow indices`() {
+        runBlocking {
+            val indices = repository.indicesFlow.first()
+            assert(indices.isNotEmpty())
+            assertEquals(2, indices.count())
         }
     }
 
