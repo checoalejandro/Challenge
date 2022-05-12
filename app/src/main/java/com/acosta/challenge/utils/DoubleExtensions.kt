@@ -16,4 +16,6 @@ fun Double.getFormattedPrice() = DecimalFormat.getCurrencyInstance().format(this
  * @param value double value
  * @return percentage format.
  */
-fun Double.getFormattedPercentage() = DecimalFormat.getPercentInstance().format(this)
+fun Double.getFormattedPercentage() = DecimalFormat.getPercentInstance().also {
+    it.maximumFractionDigits = 2
+}.format(this / 100)

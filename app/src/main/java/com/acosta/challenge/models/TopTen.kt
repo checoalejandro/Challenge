@@ -19,10 +19,28 @@ data class IndexItem(
     val ipcParticipationRate: Double,
     val lastPrice: Double,
     val closePrice: Double,
-    val riseLowTypeId: Long,
+    val riseLowTypeId: Int,
     val instrumentTypeId: Long,
     val benchmarkId: Long,
     val benchmarkPercentage: Long
-)
+) {
+    /**
+     * Returns [RaiseType] enum value.
+     * Default value is [RaiseType.DEFAULT]
+     */
+    fun getRaiseType() = RaiseType.getRaiseType(riseLowTypeId)
+
+}
+
+enum class RaiseType(val id: Int) {
+    RAISE(2),
+    LOW(1),
+    VOLUME(3),
+    DEFAULT(4);
+
+    companion object {
+        fun getRaiseType(id: Int) = values().firstOrNull { it.id == id } ?: DEFAULT
+    }
+}
 
 

@@ -12,4 +12,9 @@
     <string name="authentication_subtitle">Please validate its you.</string>
     <string name="authentication_failure">Failed to authenticate. Please try again.</string>
     <string name="authentication_negative">Cancel</string>
+
+    <string name="top_raises">Gainers</string>
+    <string name="top_losers">Losers</string>
+    <string name="top_volume">Volume</string>
+    <string name="item_default">Others</string>
 </resources>
