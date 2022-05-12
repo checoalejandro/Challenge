@@ -86,11 +86,16 @@ class IndicesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      * @param _items new content to be added.
      */
     fun setItems(_items: List<IndexItem>) {
-        val newGroup = _items.groupBy { it.riseLowTypeId }.flatMap {
-            listOf(IndexRow.Header(RaiseType.getRaiseType(it.key)), *(it.value.map { index ->
-                (IndexRow.Index(index))
-            }).toTypedArray())
-        }
+        val newGroup = _items
+            .groupBy { it.riseLowTypeId }
+            .toSortedMap(compareBy { RaiseType.getRaiseType(it) })
+            .flatMap {
+                listOf(
+                    IndexRow.Header(RaiseType.getRaiseType(it.key)), *(it.value.map { index ->
+                        (IndexRow.Index(index))
+                    }).toTypedArray()
+                )
+            }
         val diff = IndexItemDiffCallback(rows, newGroup)
         val diffResult = DiffUtil.calculateDiff(diff)
 

@@ -43,4 +43,3 @@ enum class RaiseType(val id: Int) {
     }
 }
 
-
