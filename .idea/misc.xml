@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/alej_/AndroidStudioProjects/Challenge/app/src/main/res/layout/activity_main.xml" value="0.29713552800342025" />
+        <entry key="..\:/Users/alej_/AndroidStudioProjects/Challenge/app/src/main/res/layout/fragment_i_p_c_history.xml" value="0.2586575459598119" />
+        <entry key="..\:/Users/alej_/AndroidStudioProjects/Challenge/app/src/main/res/layout/fragment_top_ten.xml" value="0.2578024796921761" />
+        <entry key="..\:/Users/alej_/AndroidStudioProjects/Challenge/app/src/main/res/layout/layout_index_item.xml" value="0.4491346559729844" />
+        <entry key="..\:/Users/alej_/AndroidStudioProjects/Challenge/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3140625" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

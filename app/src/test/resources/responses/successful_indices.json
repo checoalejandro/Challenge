@@ -1,0 +1,42 @@
+[
+  {
+    "issueId": "GSANBOR B-1",
+    "openPrice": 20,
+    "maxPrice": 21.5,
+    "minPrice": 19.99,
+    "percentageChange": -6.52173913043478,
+    "valueChange": -1.5,
+    "aggregatedVolume": 47647,
+    "bidPrice": 20.5,
+    "bidVolume": 2,
+    "askPrice": 21.4,
+    "askVolume": 1977,
+    "ipcParticipationRate": 0,
+    "lastPrice": 21.5,
+    "closePrice": 23,
+    "riseLowTypeId": 1,
+    "instrumentTypeId": 0,
+    "benchmarkId": 0,
+    "benchmarkPercentage": 0
+  },
+  {
+    "issueId": "ORBIA *",
+    "openPrice": 34.95,
+    "maxPrice": 34.95,
+    "minPrice": 33.39,
+    "percentageChange": -5.90219224283306,
+    "valueChange": -1.98,
+    "aggregatedVolume": 3240091,
+    "bidPrice": 33.51,
+    "bidVolume": 25510,
+    "askPrice": 33.71,
+    "askVolume": 45300,
+    "ipcParticipationRate": 0,
+    "lastPrice": 33.6,
+    "closePrice": 35.58,
+    "riseLowTypeId": 1,
+    "instrumentTypeId": 0,
+    "benchmarkId": 0,
+    "benchmarkPercentage": 0
+  }
+]

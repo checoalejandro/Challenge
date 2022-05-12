@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Challenge</string>
+    <string name="main_ipc_title">IPC History</string>
+    <string name="main_top_ten_title">Top Ten</string>
+    <string name="main_ipc_top_title">IPC Graph</string>
+    <string name="main_ipc_legend">Price</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Biometric -->
+    <string name="authentication_title">Authentication</string>
+    <string name="authentication_subtitle">Please validate its you.</string>
+    <string name="authentication_failure">Failed to authenticate. Please try again.</string>
+    <string name="authentication_negative">Cancel</string>
+
+    <string name="top_raises">Gainers</string>
+    <string name="top_losers">Losers</string>
+    <string name="top_volume">Volume</string>
+    <string name="item_default">Others</string>
 </resources>
