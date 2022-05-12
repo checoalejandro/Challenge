@@ -10,6 +10,7 @@ import com.acosta.challenge.charts.ChartFactory
 import com.acosta.challenge.charts.parser.LineParser
 import com.acosta.challenge.databinding.FragmentIPCHistoryBinding
 import com.acosta.challenge.ui.viewmodels.HomeViewModel
+import com.acosta.challenge.utils.fadeOut
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 /**
@@ -48,11 +49,13 @@ class IPCHistoryFragment : Fragment() {
                     "IPCHistoryFragment",
                     "setObservers: No response from server received to IPC history"
                 )
+                binding.animation.fadeOut()
                 return@observe
             }
 
             // Show data, if we need another type, ChartFactory.BAR can be used.
             ChartFactory.LINE.parse(response, LineParser(binding.lineChart))
+            binding.animation.fadeOut()
         }
     }
 
