@@ -1,6 +1,7 @@
 package com.acosta.challenge
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -26,6 +27,11 @@ class MainActivity : BiometricActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        viewModel.errorLiveData.observe(this) {
+            if (it == null) return@observe
+            Snackbar.make(binding.root, it, Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     override fun onResume() {
