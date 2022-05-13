@@ -20,7 +20,7 @@ jobs:
         with:
           java-version: 11
       - name: Unit tests
-        run: bash ./gradlew test --stacktrace
+        run: bash ./gradlew :app:testDebugUnitTest --stacktrace
 
   apk:
     name: Generate APK
