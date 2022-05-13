@@ -1,5 +1,10 @@
 buildscript {
     ext {
+
+        compile_sdk_version = 32
+        min_sdk_version = 24
+        target_sdk_version = 32
+
         androidx_version = '1.7.0'
         compose_version = '1.2.0-alpha08'
         retrofit_version = '2.9.0'
